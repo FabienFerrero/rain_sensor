@@ -1,0 +1,31 @@
+function decodeUplink(input) {
+  var rain = input.bytes[0];
+  
+  var temperature = (input.bytes[2] << 0) | (input.bytes[1] << 8);
+  
+  var humidity = input.bytes[3];
+  
+  
+  
+  if (input.bytes.length == 4) {
+    return {
+      data: {
+        rain: rain,
+        temperature: temperature/10,
+        humidity: humidity,
+        raw_data: input.bytes
+      },
+      warnings: [],
+      errors: []
+    };
+  }
+  else {
+    return {
+      data: {
+        raw_data: input.bytes
+      },
+      warnings: ["Unrecognized payload"],
+      errors: []
+    };
+  }
+}
