@@ -33,7 +33,7 @@ uint64_t spendTime; // the remaining time before wake up in period OTAA
 bool bucketPositionA = false; // one of the two positions of tipping-bucket
 // const double bucketAmount = 0.01610595;   // inches equivalent of ml to trip tipping-bucket
 
-#define OTAA_PERIOD (10000)
+#define OTAA_PERIOD (30000)
 // #define RAIN_STOP_TIME   (6000)
 /*************************************
 
@@ -216,7 +216,7 @@ void uplink_routine()
   uint8_t data_len = 0;
   collected_data[data_len++] = (uint8_t)buttonFlag;
   collected_data[data_len++] = (uint8_t)temper >> 8;
-  collected_data[data_len++] = (uint8_t)(temper / 10) & 0xFF;
+  collected_data[data_len++] = (uint8_t)(temper) & 0xFF;
   collected_data[data_len++] = (uint8_t)humi & 0xFF;
 
   Serial.println("Data Packet:");
